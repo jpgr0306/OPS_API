@@ -31,17 +31,25 @@ auth_url = "https://ops.epo.org/auth/accesstoken"
 token = None # Começa vazio
 
 def get_token():
-    auth_b64 = base64.b64encode(f"{KEY}:{SECRET}".encode()).decode()
-    res = requests.post(
-        "https://ops.epo.org/rest-services/auth/accesstoken",
-        headers={"Authorization": f"Basic {auth_b64}", "Content-Type": "application/x-www-form-urlencoded"},
-        data={"grant_type": "client_credentials"}
-    )
+    # URL com a versão 3.2 conforme você enviou
+    auth_url = "https://ops.epo.org/3.2/auth/accesstoken"
     
-    # Se não for 200 (Sucesso), mostra o erro real em vez de quebrar no JSON
+    # Gerando o Basic Auth (eTNBT... == ConsumerKey:ConsumerSecret)
+    auth_string = f"{KEY}:{SECRET}"
+    auth_b64 = base64.b64encode(auth_string.encode()).decode()
+    
+    headers = {
+        "Authorization": f"Basic {auth_b64}",
+        "Content-Type": "application/x-www-form-urlencoded"
+    }
+    
+    # Payload exatamente como solicitado
+    payload = "grant_type=client_credentials"
+    
+    res = requests.post(auth_url, headers=headers, data=payload)
+    
     if res.status_code != 200:
-        print(f"Erro na Autenticação: {res.status_code}")
-        print(f"Resposta da API: {res.text}")
+        print(f"Erro {res.status_code}: {res.text}")
         exit(1)
         
     return res.json()['access_token']
