@@ -1,5 +1,7 @@
 import os
 import json
+import requests
+import base64
 from dotenv import load_dotenv
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
