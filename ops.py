@@ -27,7 +27,7 @@ def autenticar_service_account():
 
 # 2. Obter Token (OAuth2)
 auth_b64 = base64.b64encode(f"{KEY}:{SECRET}".encode()).decode()
-auth_url = "https://ops.epo.org/rest-services/auth/accesstoken"
+auth_url = "https://ops.epo.org/auth/accesstoken"
 token = None # Começa vazio
 
 def get_token():
