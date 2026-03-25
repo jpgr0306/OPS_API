@@ -34,7 +34,7 @@ def get_token():
     auth_url = "https://ops.epo.org/3.2/auth/accesstoken"
     
     auth_string = f"{KEY}:{SECRET}"
-    auth_b64 = base64.b64encode(auth_string.encode()).decode()
+    auth_b64 = base64.b64encode(auth_string.encode('utf-8')).decode('utf-8')
     
     headers = {
         "Authorization": f"Basic {auth_b64}",
