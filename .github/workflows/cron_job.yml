@@ -31,4 +31,4 @@ jobs:
           GOOGLE_APPLICATION_CREDENTIALS_JSON: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_JSON }}
           OPS_CONSUMER_KEY: ${{ secrets.OPS_CONSUMER_KEY }}
           OPS_CONSUMER_SECRET: ${{ secrets.OPS_CONSUMER_SECRET }}
-        run: python seu_script_principal.py
+        run: python ops.py
