@@ -37,6 +37,13 @@ def get_token():
         headers={"Authorization": f"Basic {auth_b64}", "Content-Type": "application/x-www-form-urlencoded"},
         data={"grant_type": "client_credentials"}
     )
+    
+    # Se não for 200 (Sucesso), mostra o erro real em vez de quebrar no JSON
+    if res.status_code != 200:
+        print(f"Erro na Autenticação: {res.status_code}")
+        print(f"Resposta da API: {res.text}")
+        exit(1)
+        
     return res.json()['access_token']
 
 def consultar(patente):
