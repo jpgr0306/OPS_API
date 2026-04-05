@@ -65,7 +65,7 @@ def consultar(patente):
         token = get_token()
         res = requests.get(url, headers={"Authorization": f"Bearer {token}", "Accept": "application/json"})
     
-    return res.json()
+    return res.text
 
 # Exemplo de uso direto
 if __name__ == "__main__":
