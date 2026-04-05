@@ -57,7 +57,7 @@ def consultar(patente):
     if not token: token = get_token()
     
     # URL de serviços continua com /rest-services/
-    url = f"https://ops.epo.org/rest-services/published-data/family/application/epodoc/{patente}"
+    url = f"https://ops.epo.org/3.2/rest-services/family/publication/epodoc/{patente}"
     
     res = requests.get(url, headers={"Authorization": f"Bearer {token}", "Accept": "application/json"})
     
